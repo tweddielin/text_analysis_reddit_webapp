@@ -19,10 +19,10 @@ def index():
             return render_template("index.html", results=result, script=script, div=div)
     return render_template("index.html")
 
-@app.route('/<word>/get_similar', methods=['GET'])
-def get_similar(word):
+@app.route('/<word>/get_similar/<int:topn>', methods=['GET'])
+def get_similar(word, topn):
     try:
-        result = model.find_most_similar(word, 10)
+        result = model.find_most_similar(word, topn)
         print(result)
         return jsonify(results=result)
     except:
