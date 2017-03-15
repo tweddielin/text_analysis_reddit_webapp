@@ -21,29 +21,13 @@
     <h4>Results</h4>
     <br>
     <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Topic</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for r in results %}
-        <tr>
-          <td> {{ r[0] }} </td>
-          <td> {{ r[1] }} </td>
-        </tr>
-      {% endfor %}
-     </tbody>
     </table>
   </div>
   <div class="col-md-6">
     <h4>Bar Chart</h4>
     <div class='row'>
     </div>
-    <div style="margin-top:50px; margin-left:20px">
-      {{ div | safe }}
-      {{ script | safe }}
+    <div name="bar-chart" style="margin-top:50px; margin-left:20px">
     </div>
   </div>
 </div>
