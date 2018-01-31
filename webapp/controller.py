@@ -14,8 +14,10 @@ def index():
             return render_template("index.html", results=result, script=script, div=div)
     return render_template("index.html")
 
-@app.route('/<word>/get_similar/<int:topn>', methods=['GET'])
-def get_similar(word, topn):
+@app.route('/get_similar_word', methods=['GET'])
+def get_similar():
+    word = str(request.args.get('word'))
+    topn = int(request.args.get('topn'))
     try:
         result = model.find_most_similar(word, topn)
         print(result)
@@ -24,3 +26,15 @@ def get_similar(word, topn):
         print('there are some problems')
         return jsonify({"sorry": "Sorry, no results! Please try again."}), 500
 
+
+@app.route('/get_similar_words', methods=['GET'])
+def get_similar_words():
+    words = str(request.args.get('word'))
+    topn = int(request.args.get('topn'))
+    try:
+        result = model.fine_most_similar_words(words, topn)
+        print(result)
+        return jsonify(results=result)
+    except:
+        print('there are some problems')
+        return jsonify({"sorry": "Sorry, no results! Please try again."}), 500
