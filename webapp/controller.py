@@ -10,7 +10,6 @@ def index():
             labels = list(map(lambda i: i[0], result))
             values = list(map(lambda i: i[1], result))
             script, div = draw.make_bar_plot(labels, values)
-            print(result)
             return render_template("index.html", results=result, script=script, div=div)
     return render_template("index.html")
 
@@ -20,7 +19,6 @@ def get_similar():
     topn = int(request.args.get('topn'))
     try:
         result = model.find_most_similar(word, topn)
-        print(result)
         return jsonify(results=result)
     except:
         print('there are some problems')
@@ -33,7 +31,6 @@ def get_similar_words():
     topn = int(request.args.get('topn'))
     try:
         result = model.fine_most_similar_words(words, topn)
-        print(result)
         return jsonify(results=result)
     except:
         print('there are some problems')
